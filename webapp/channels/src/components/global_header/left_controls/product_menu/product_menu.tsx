@@ -33,9 +33,7 @@ import {useCurrentProductId, useProducts, isChannels} from 'utils/products';
 
 import type {GlobalState} from 'types/store';
 
-import ProductBranding from './product_branding';
 import ProductMenuItem from './product_menu_item';
-import ProductMenuList from './product_menu_list';
 
 import {useClickOutsideRef} from '../../hooks';
 
@@ -137,7 +135,6 @@ const ProductMenu = (): JSX.Element => {
                         aria-label={formatMessage({id: 'global_header.productSwitchMenu', defaultMessage: 'Product switch menu'})}
                         aria-controls='product-switcher-menu'
                     />
-                    <ProductBranding/>
                 </ProductMenuContainer>
                 <Menu
                     listId={'product-switcher-menu-dropdown'}
@@ -153,11 +150,6 @@ const ProductMenu = (): JSX.Element => {
                         onClick={handleClick}
                     />
                     {productItems}
-                    <ProductMenuList
-                        isMessaging={isChannels(currentProductID)}
-                        onClick={handleClick}
-                        handleVisitConsoleClick={handleVisitConsoleClick}
-                    />
                 </Menu>
             </MenuWrapper>
         </div>

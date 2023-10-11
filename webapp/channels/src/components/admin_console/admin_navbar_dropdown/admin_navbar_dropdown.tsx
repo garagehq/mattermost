@@ -10,7 +10,6 @@ import type {Team} from '@mattermost/types/teams';
 import * as GlobalActions from 'actions/global_actions';
 import {trackEvent} from 'actions/telemetry_actions.jsx';
 
-import AboutBuildModal from 'components/about_build_modal';
 import CommercialSupportModal from 'components/commercial_support_modal';
 import LocalizedIcon from 'components/localized_icon';
 import Menu from 'components/widgets/menu/menu';
@@ -117,12 +116,6 @@ class AdminNavbarDropdown extends React.PureComponent<Props> {
                         text={formatMessage({id: 'admin.nav.troubleshootingForum', defaultMessage: 'Troubleshooting Forum'})}
                     />
                     {commercialSupport}
-                    <Menu.ItemToggleModalRedux
-                        onClick={() => trackEvent('admin', 'click_administrators_about')}
-                        modalId={ModalIdentifiers.ABOUT}
-                        dialogType={AboutBuildModal}
-                        text={formatMessage({id: 'navbar_dropdown.about', defaultMessage: 'About {appTitle}'}, {appTitle: siteName || 'Mattermost'})}
-                    />
                 </Menu.Group>
                 <Menu.Group>
                     <Menu.ItemAction

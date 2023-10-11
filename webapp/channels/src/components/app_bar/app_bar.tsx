@@ -6,12 +6,7 @@ import React from 'react';
 import type {ReactNode} from 'react';
 import {useSelector} from 'react-redux';
 
-import type {GlobalState} from '@mattermost/types/store';
-
-import {Permissions} from 'mattermost-redux/constants';
 import {getAppBarAppBindings} from 'mattermost-redux/selectors/entities/apps';
-import {isMarketplaceEnabled} from 'mattermost-redux/selectors/entities/general';
-import {haveICurrentTeamPermission} from 'mattermost-redux/selectors/entities/roles';
 
 import {getAppBarPluginComponents, getChannelHeaderPluginComponents, shouldShowAppBar} from 'selectors/plugins';
 
@@ -19,7 +14,6 @@ import {suitePluginIds} from 'utils/constants';
 import {useCurrentProduct, useCurrentProductId, inScope} from 'utils/products';
 
 import AppBarBinding, {isAppBinding} from './app_bar_binding';
-import AppBarMarketplace from './app_bar_marketplace';
 import AppBarPluginComponent, {isAppBarPluginComponent} from './app_bar_plugin_component';
 
 import './app_bar.scss';
@@ -31,10 +25,6 @@ export default function AppBar() {
     const currentProduct = useCurrentProduct();
     const currentProductId = useCurrentProductId();
     const enabled = useSelector(shouldShowAppBar);
-    const canOpenMarketplace = useSelector((state: GlobalState) => (
-        isMarketplaceEnabled(state) &&
-        haveICurrentTeamPermission(state, Permissions.SYSCONSOLE_WRITE_PLUGINS)
-    ));
 
     if (
         !enabled ||
@@ -89,11 +79,6 @@ export default function AppBar() {
             <div className={'app-bar__top'}>
                 {items}
             </div>
-            {canOpenMarketplace && (
-                <div className='app-bar__bottom'>
-                    <AppBarMarketplace/>
-                </div>
-            )}
         </div>
     );
 }

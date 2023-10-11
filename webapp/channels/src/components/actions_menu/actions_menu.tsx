@@ -11,19 +11,14 @@ import type {AppBinding} from '@mattermost/types/apps';
 import type {Post} from '@mattermost/types/posts';
 
 import {AppCallResponseTypes} from 'mattermost-redux/constants/apps';
-import Permissions from 'mattermost-redux/constants/permissions';
 
-import FormattedMarkdownMessage from 'components/formatted_markdown_message';
 import OverlayTrigger from 'components/overlay_trigger';
-import SystemPermissionGate from 'components/permissions_gates/system_permission_gate';
-import MarketplaceModal from 'components/plugin_marketplace/marketplace_modal';
-import type {OpenedFromType} from 'components/plugin_marketplace/marketplace_modal';
 import Menu from 'components/widgets/menu/menu';
 import MenuWrapper from 'components/widgets/menu/menu_wrapper';
 
 import Pluggable from 'plugins/pluggable';
 import {createCallContext} from 'utils/apps';
-import {Locations, Constants, ModalIdentifiers} from 'utils/constants';
+import {Locations, Constants} from 'utils/constants';
 import * as PostUtils from 'utils/post_utils';
 import * as Utils from 'utils/utils';
 
@@ -145,15 +140,7 @@ export class ActionMenuClass extends React.PureComponent<Props, State> {
         }
     };
 
-    handleOpenMarketplace = (): void => {
-        const openedFrom: OpenedFromType = 'actions_menu';
-        const openMarketplaceData = {
-            modalId: ModalIdentifiers.PLUGIN_MARKETPLACE,
-            dialogType: MarketplaceModal,
-            dialogProps: {openedFrom},
-        };
-        this.props.actions.openModal(openMarketplaceData);
-    };
+    handleOpenMarketplace = (): void => {};
 
     onClickAppBinding = async (binding: AppBinding) => {
         const {post, intl} = this.props;
@@ -206,34 +193,7 @@ export class ActionMenuClass extends React.PureComponent<Props, State> {
     };
 
     visitMarketplaceTip(): React.ReactElement {
-        return (
-            <SystemPermissionGate
-                permissions={[Permissions.MANAGE_SYSTEM]}
-                key='visit-marketplace-permissions'
-            >
-                <div className='visit-marketplace-text' >
-                    <FormattedMarkdownMessage
-                        id='post_info.actions.noActions'
-                        defaultMessage='No Actions currently\nconfigured for this server'
-                    />
-                </div>
-                <div className='visit-marketplace' >
-                    <button
-                        id='marketPlaceButton'
-                        className='btn btn-primary visit-marketplace-button'
-                        onClick={this.handleOpenMarketplace}
-                    >
-                        <ActionsMenuIcon name='icon-view-grid-plus-outline visit-marketplace-button-icon'/>
-                        <span className='visit-marketplace-button-text'>
-                            <FormattedMarkdownMessage
-                                id='post_info.actions.visitMarketplace'
-                                defaultMessage='Visit the Marketplace'
-                            />
-                        </span>
-                    </button>
-                </div>
-            </SystemPermissionGate>
-        );
+        return <></>;
     }
 
     renderDivider = (suffix: string): React.ReactNode => {
