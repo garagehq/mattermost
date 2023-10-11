@@ -10,7 +10,6 @@ import {useSelector} from 'react-redux';
 import {getCurrentChannelNameForSearchShortcut} from 'mattermost-redux/selectors/entities/channels';
 
 import HeaderIconWrapper from 'components/channel_header/components/header_icon_wrapper';
-import UserGuideDropdown from 'components/search/user_guide_dropdown';
 import SearchBar from 'components/search_bar/search_bar';
 import SearchHint from 'components/search_hint/search_hint';
 import SearchResults from 'components/search_results';
@@ -519,7 +518,6 @@ const Search: React.FC<Props> = (props: Props): JSX.Element => {
                         {renderSearchBar()}
                         {renderMentionButton()}
                         {renderFlagBtn()}
-                        <UserGuideDropdown/>
                     </div>
                 </div>
             )}

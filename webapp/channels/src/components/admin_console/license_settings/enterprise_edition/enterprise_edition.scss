@@ -1,5 +1,4 @@
 .EnterpriseEditionRightPannel {
-    font-family: Metropolis;
 
     .svg-image {
         text-align: center;
@@ -57,7 +56,7 @@
 }
 
 .EnterpriseEditionLeftPanel {
-    font-family: Metropolis;
+    
 
     &__Grid {
         display: grid;
@@ -116,7 +115,7 @@
 
             .add-seats-button {
                 border-radius: 4px;
-                font-family: 'Open Sans', sans-serif;
+                
                 font-size: 12px;
                 font-weight: 600;
             }

@@ -288,8 +288,6 @@ body {
             font-weight: normal;
 
             &::before {
-                @extend %font-awesome;
-
                 margin-right: 4px;
                 color: #aaa;
                 content: '\f071';
