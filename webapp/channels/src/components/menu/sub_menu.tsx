@@ -2,7 +2,6 @@
 // See LICENSE.txt for license information.
 
 import MuiMenuList from '@mui/material/MenuList';
-import type {PopoverOrigin} from '@mui/material/Popover';
 import React, {
     useState,
     useEffect,
@@ -48,6 +47,11 @@ interface Props {
     forceOpenOnLeft?: boolean; // Most of the times this is not needed, since submenu position is calculated and placed
 
     children: ReactNode;
+}
+
+interface PopoverOrigin {
+    vertical: 'top' | 'center' | 'bottom';
+    horizontal: 'left' | 'center' | 'right';
 }
 
 export function SubMenu(props: Props) {
