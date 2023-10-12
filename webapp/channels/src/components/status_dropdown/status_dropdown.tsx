@@ -36,7 +36,6 @@ import MenuWrapper from 'components/widgets/menu/menu_wrapper';
 import Avatar from 'components/widgets/users/avatar/avatar';
 import type {TAvatarSizeToken} from 'components/widgets/users/avatar/avatar';
 
-import plantImg from 'images/plants/plant-1.jpg';
 import {Constants, ModalIdentifiers, UserStatuses} from 'utils/constants';
 import {t} from 'utils/i18n';
 import {getCurrentDateTimeForTimezone, getCurrentMomentForTimezone} from 'utils/timezone';
@@ -188,7 +187,7 @@ export class StatusDropdown extends React.PureComponent<Props, State> {
         return (
             <Avatar
                 size={size}
-                url={plantImg}
+                url={this.props.profilePicture}
                 tabIndex={undefined}
             />
         );
