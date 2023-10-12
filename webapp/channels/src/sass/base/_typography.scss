@@ -29,13 +29,13 @@ a {
 
 body {
     @include font-smoothing;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
 }
 
 h1,
 h2,
 h3 {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'IBM Plex Mono', sans-serif;
 }
 
 h1 {
@@ -104,14 +104,14 @@ ol {
 }
 
 .app__body.font--open_sans {
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
 }
 
 .app__body {
     h1,
     h2,
     h3 {
-        font-family: Helvetica, Arial, sans-serif;
+        font-family: 'IBM Plex Mono', sans-serif;
     }
 }
 

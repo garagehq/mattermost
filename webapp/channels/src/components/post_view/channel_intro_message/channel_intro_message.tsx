@@ -28,9 +28,6 @@ import {Constants, ModalIdentifiers} from 'utils/constants';
 import {getMonthLong, t} from 'utils/i18n';
 import * as Utils from 'utils/utils';
 
-import AddMembersButton from './add_members_button';
-import PluggableIntroButtons from './pluggable_intro_buttons';
-
 type Props = {
     currentUserId: string;
     channel: Channel;
@@ -87,7 +84,7 @@ export default class ChannelIntroMessage extends React.PureComponent<Props> {
         } else if (channel.name === Constants.DEFAULT_CHANNEL) {
             return createDefaultIntroMessage(channel, centeredIntro, stats, usersLimit, enableUserCreation, isReadOnly, teamIsGroupConstrained);
         } else if (channel.name === Constants.OFFTOPIC_CHANNEL) {
-            return createOffTopicIntroMessage(channel, centeredIntro, stats, usersLimit);
+            return createOffTopicIntroMessage(channel, centeredIntro);
         } else if (channel.type === Constants.OPEN_CHANNEL || channel.type === Constants.PRIVATE_CHANNEL) {
             return createStandardIntroMessage(channel, centeredIntro, stats, usersLimit, locale, creatorName);
         }
@@ -173,7 +170,6 @@ function createGMIntroMessage(channel: Channel, centeredIntro: string, profiles:
                 </p>
                 <div style={{display: 'flex'}}>
                     {createNotificationPreferencesButton(channel, currentUserProfile)}
-                    <PluggableIntroButtons channel={channel}/>
                     {createSetHeaderButton(channel)}
                 </div>
             </div>
@@ -200,10 +196,8 @@ function createDMIntroMessage(channel: Channel, centeredIntro: string, teammate?
     if (teammate) {
         const src = teammate ? Utils.imageURLForUser(teammate.id, teammate.last_picture_update) : '';
 
-        let pluggableButton = null;
         let setHeaderButton = null;
         if (!teammate?.is_bot) {
-            pluggableButton = <PluggableIntroButtons channel={channel}/>;
             setHeaderButton = createSetHeaderButton(channel);
         }
 
@@ -238,7 +232,6 @@ function createDMIntroMessage(channel: Channel, centeredIntro: string, teammate?
                     />
                 </p>
                 <div style={{display: 'flex'}}>
-                    {pluggableButton}
                     {setHeaderButton}
                 </div>
             </div>
@@ -260,34 +253,7 @@ function createDMIntroMessage(channel: Channel, centeredIntro: string, teammate?
     );
 }
 
-function createOffTopicIntroMessage(channel: Channel, centeredIntro: string, stats: any, usersLimit: number) {
-    const isPrivate = channel.type === Constants.PRIVATE_CHANNEL;
-    const children = createSetHeaderButton(channel);
-    const totalUsers = stats.total_users_count;
-
-    let setHeaderButton = null;
-    if (children) {
-        setHeaderButton = (
-            <ChannelPermissionGate
-                teamId={channel.team_id}
-                channelId={channel.id}
-                permissions={[isPrivate ? Permissions.MANAGE_PRIVATE_CHANNEL_PROPERTIES : Permissions.MANAGE_PUBLIC_CHANNEL_PROPERTIES]}
-            >
-                {children}
-            </ChannelPermissionGate>
-        );
-    }
-
-    const channelInviteButton = (
-        <AddMembersButton
-            setHeader={setHeaderButton}
-            totalUsers={totalUsers}
-            usersLimit={usersLimit}
-            channel={channel}
-            pluginButtons={<PluggableIntroButtons channel={channel}/>}
-        />
-    );
-
+function createOffTopicIntroMessage(channel: Channel, centeredIntro: string) {
     return (
         <div
             id='channelIntro'
@@ -311,7 +277,6 @@ function createOffTopicIntroMessage(channel: Channel, centeredIntro: string, sta
                     }}
                 />
             </p>
-            {channelInviteButton}
         </div>
     );
 }
@@ -326,13 +291,10 @@ export function createDefaultIntroMessage(
     teamIsGroupConstrained?: boolean,
 ) {
     let teamInviteLink = null;
-    const totalUsers = stats.total_users_count;
     const isPrivate = channel.type === Constants.PRIVATE_CHANNEL;
 
     let setHeaderButton = null;
-    let pluginButtons = null;
     if (!isReadOnly) {
-        pluginButtons = <PluggableIntroButtons channel={channel}/>;
         const children = createSetHeaderButton(channel);
         if (children) {
             setHeaderButton = (
@@ -357,15 +319,6 @@ export function createDefaultIntroMessage(
                     teamId={channel.team_id}
                     permissions={[Permissions.ADD_USER_TO_TEAM]}
                 >
-                    {!teamIsGroupConstrained &&
-                        <AddMembersButton
-                            setHeader={setHeaderButton}
-                            totalUsers={totalUsers}
-                            usersLimit={usersLimit}
-                            channel={channel}
-                            pluginButtons={pluginButtons}
-                        />
-                    }
                     {teamIsGroupConstrained &&
                     <ToggleModalButton
                         className='intro-links color--link'
@@ -423,7 +376,6 @@ export function createDefaultIntroMessage(
                 }
             </p>
             {teamInviteLink}
-            {teamIsGroupConstrained && pluginButtons}
             {teamIsGroupConstrained && setHeaderButton}
             <br/>
         </div>
@@ -434,7 +386,6 @@ function createStandardIntroMessage(channel: Channel, centeredIntro: string, sta
     const uiName = channel.display_name;
     let memberMessage;
     const channelIsArchived = channel.delete_at !== 0;
-    const totalUsers = stats.total_users_count;
 
     if (channelIsArchived) {
         memberMessage = '';
@@ -537,31 +488,6 @@ function createStandardIntroMessage(channel: Channel, centeredIntro: string, sta
         }
     }
 
-    const isPrivate = channel.type === Constants.PRIVATE_CHANNEL;
-    let setHeaderButton = null;
-    const children = createSetHeaderButton(channel);
-    if (children) {
-        setHeaderButton = (
-            <ChannelPermissionGate
-                teamId={channel.team_id}
-                channelId={channel.id}
-                permissions={[isPrivate ? Permissions.MANAGE_PRIVATE_CHANNEL_PROPERTIES : Permissions.MANAGE_PUBLIC_CHANNEL_PROPERTIES]}
-            >
-                {children}
-            </ChannelPermissionGate>
-        );
-    }
-
-    const channelInviteButton = (
-        <AddMembersButton
-            totalUsers={totalUsers}
-            usersLimit={usersLimit}
-            channel={channel}
-            setHeader={setHeaderButton}
-            pluginButtons={<PluggableIntroButtons channel={channel}/>}
-        />
-    );
-
     return (
         <div
             id='channelIntro'
@@ -582,7 +508,6 @@ function createStandardIntroMessage(channel: Channel, centeredIntro: string, sta
                 {purposeMessage}
                 <br/>
             </p>
-            {channelInviteButton}
         </div>
     );
 }
