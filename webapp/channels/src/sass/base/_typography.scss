@@ -29,13 +29,13 @@ a {
 
 body {
     @include font-smoothing;
-    font-family: 'IBM Plex Mono', monospace;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 h1,
 h2,
 h3 {
-    font-family: 'IBM Plex Mono', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
@@ -103,16 +103,24 @@ ol {
     cursor: pointer;
 }
 
-.app__body.font--open_sans {
-    font-family: 'IBM Plex Mono', monospace;
+.app__body.font--plex_sans {
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .app__body {
     h1,
     h2,
     h3 {
-        font-family: 'IBM Plex Mono', sans-serif;
+        font-family: 'IBM Plex Sans', sans-serif;
     }
+}
+
+.plex-mono {
+    font-family: 'IBM Plex Mono', monospace;
+}
+
+.plex-sans {
+    font-family: 'IBM Plex Sans', sans-serif;
 }
 
 .color--link--adminack {

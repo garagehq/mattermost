@@ -13,7 +13,6 @@ import CopyUrlContextMenu from 'components/copy_url_context_menu';
 import CustomStatusEmoji from 'components/custom_status/custom_status_emoji';
 import OverlayTrigger from 'components/overlay_trigger';
 import Tooltip from 'components/tooltip';
-import {ChannelsAndDirectMessagesTour} from 'components/tours/onboarding_tour';
 
 import Pluggable from 'plugins/pluggable';
 import Constants, {RHSStates} from 'utils/constants';
@@ -182,18 +181,8 @@ export default class SidebarChannelLink extends React.PureComponent<Props, State
             label,
             link,
             unreadMentions,
-            firstChannelName,
-            showChannelsTutorialStep,
             hasUrgent,
         } = this.props;
-
-        let channelsTutorialTip: JSX.Element | null = null;
-
-        // firstChannelName is based on channel.name,
-        // but we want to display `display_name` to the user, so we check against `.name` for channel equality but pass in the .display_name value
-        if (firstChannelName === channel.name || (!firstChannelName && showChannelsTutorialStep && channel.name === Constants.DEFAULT_CHANNEL)) {
-            channelsTutorialTip = firstChannelName ? (<ChannelsAndDirectMessagesTour firstChannelName={channel.display_name}/>) : <ChannelsAndDirectMessagesTour/>;
-        }
 
         let labelElement: JSX.Element = (
             <span className='SidebarChannelLinkLabel'>
@@ -282,7 +271,7 @@ export default class SidebarChannelLink extends React.PureComponent<Props, State
 
         // NOTE: class added to temporarily support the desktop app's at-mention DOM scraping of the old sidebar
         const className = classNames([
-            'SidebarLink',
+            'SidebarLink plex-mono',
             {
                 menuOpen: this.state.isMenuOpen,
                 muted: isMuted,
@@ -300,7 +289,6 @@ export default class SidebarChannelLink extends React.PureComponent<Props, State
                 tabIndex={0}
             >
                 {content}
-                {channelsTutorialTip}
             </Link>
         );
 

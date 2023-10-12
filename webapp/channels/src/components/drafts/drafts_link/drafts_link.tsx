@@ -15,6 +15,8 @@ import {makeGetDraftsCount} from 'selectors/drafts';
 import DraftsTourTip from 'components/drafts/drafts_link/drafts_tour_tip/drafts_tour_tip';
 import ChannelMentionBadge from 'components/sidebar/sidebar_channel/channel_mention_badge';
 
+import pencilIcon from 'images/icons/pencil-light.svg';
+
 import './drafts_link.scss';
 
 const getDraftsCount = makeGetDraftsCount();
@@ -54,11 +56,11 @@ function DraftsLink() {
                     className='SidebarLink sidebar-item'
                     tabIndex={0}
                 >
-                    <i
-                        data-testid='draftIcon'
-                        className='icon icon-pencil-outline'
+                    <img
+                        src={pencilIcon}
+                        style={{marginRight: '10px'}}
                     />
-                    <div className='SidebarChannelLinkLabel_wrapper'>
+                    <div className='SidebarChannelLinkLabel_wrapper plex-mono'>
                         <span className='SidebarChannelLinkLabel sidebar-item__name'>
                             <FormattedMessage
                                 id='drafts.sidebarLink'

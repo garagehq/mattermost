@@ -7,11 +7,6 @@ import type {ReactNode, CSSProperties} from 'react';
 import {FormattedMessage} from 'react-intl';
 import type {MessageDescriptor} from 'react-intl';
 
-import FlagIcon from 'components/widgets/icons/flag_icon';
-import MentionsIcon from 'components/widgets/icons/mentions_icon';
-import PinIcon from 'components/widgets/icons/pin_icon';
-import SearchIcon from 'components/widgets/icons/search_icon';
-
 import {t} from 'utils/i18n';
 
 import {NoResultsVariant, NoResultsLayout} from './types';
@@ -29,18 +24,6 @@ interface Props {
     titleClassName?: string;
     subtitleClassName?: string;
 }
-
-const iconMap: {[key in NoResultsVariant]: React.ReactNode } = {
-    [NoResultsVariant.ChannelSearch]: <SearchIcon className='no-results__icon'/>,
-    [NoResultsVariant.Mentions]: <MentionsIcon className='no-results__icon'/>,
-    [NoResultsVariant.FlaggedPosts]: <FlagIcon className='no-results__icon'/>,
-    [NoResultsVariant.PinnedPosts]: <PinIcon className='no-results__icon'/>,
-    [NoResultsVariant.ChannelFiles]: <i className='icon icon-file-text-outline no-results__icon'/>,
-    [NoResultsVariant.ChannelFilesFiltered]: <i className='icon icon-file-text-outline no-results__icon'/>,
-    [NoResultsVariant.UserGroups]: <i className='icon icon-account-multiple-outline no-results__icon'/>,
-    [NoResultsVariant.UserGroupMembers]: <i className='icon icon-account-outline no-results__icon'/>,
-    [NoResultsVariant.UserGroupsArchived]: <i className='icon icon-account-multiple-outline no-results__icon'/>,
-};
 
 const titleMap: {[key in NoResultsVariant]: MessageDescriptor} = {
     [NoResultsVariant.ChannelSearch]: {
@@ -108,11 +91,6 @@ const NoResultsIndicator = ({
     expanded,
     style,
     variant,
-    iconGraphic = variant ? (
-        <div className='no-results__variant-wrapper'>
-            {iconMap[variant]}
-        </div>
-    ) : null,
     titleValues,
     title = variant ? (
         <FormattedMessage
@@ -136,8 +114,6 @@ const NoResultsIndicator = ({
             className={classNames('no-results__wrapper', {'horizontal-layout': layout === NoResultsLayout.Horizontal})}
             style={style}
         >
-            {iconGraphic}
-
             <div
                 className='no-results__text-container'
             >

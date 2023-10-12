@@ -11,6 +11,8 @@ import LeaveChannelModal from 'components/leave_channel_modal';
 import SharedChannelIndicator from 'components/shared_channel_indicator';
 import SidebarChannelLink from 'components/sidebar/sidebar_channel/sidebar_channel_link';
 
+import asteriskIcon from 'images/icons/asterisk-thin.svg';
+import lockIcon from 'images/icons/lock-key-thin.svg';
 import Constants, {ModalIdentifiers} from 'utils/constants';
 import {localizeMessage} from 'utils/utils';
 
@@ -59,11 +61,17 @@ export default class SidebarBaseChannel extends React.PureComponent<Props> {
             );
         } else if (channel.type === Constants.OPEN_CHANNEL) {
             return (
-                <i className='icon icon-globe'/>
+                <img
+                    src={asteriskIcon}
+                    style={{marginRight: '8px'}}
+                />
             );
         } else if (channel.type === Constants.PRIVATE_CHANNEL) {
             return (
-                <i className='icon icon-lock-outline'/>
+                <img
+                    src={lockIcon}
+                    style={{marginRight: '8px'}}
+                />
             );
         }
 

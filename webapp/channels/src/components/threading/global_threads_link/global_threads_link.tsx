@@ -27,6 +27,7 @@ import CollapsedReplyThreadsModal
 import CRTWelcomeTutorialTip
     from 'components/tours/crt_tour/crt_welcome_tutorial_tip';
 
+import chatIcon from 'images/icons/chat-text-light.svg';
 import Constants, {
     CrtTutorialSteps,
     CrtTutorialTriggerSteps,
@@ -37,8 +38,6 @@ import Constants, {
 import {t} from 'utils/i18n';
 
 import type {GlobalState} from 'types/store';
-
-import ThreadsIcon from './threads_icon';
 
 import {useThreadRouting} from '../hooks';
 
@@ -108,11 +107,12 @@ const GlobalThreadsLink = () => {
                     })}
                     tabIndex={0}
                 >
-                    <span className='icon'>
-                        <ThreadsIcon/>
-                    </span>
+                    <img
+                        src={chatIcon}
+                        style={{marginRight: '10px'}}
+                    />
                     <div className='SidebarChannelLinkLabel_wrapper'>
-                        <span className='SidebarChannelLinkLabel sidebar-item__name'>
+                        <span className='SidebarChannelLinkLabel sidebar-item__name plex-mono'>
                             {formatMessage({id: t('globalThreads.sidebarLink'), defaultMessage: 'Threads'})}
                         </span>
                     </div>
