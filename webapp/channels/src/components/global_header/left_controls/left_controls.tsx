@@ -4,6 +4,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import bugsLogo from 'images/bugs-logo.png';
 import {isDesktopApp} from 'utils/user_agent';
 
 import HistoryButtons from './history_buttons';
@@ -22,6 +23,11 @@ const LeftControlsContainer = styled.div`
 
 const LeftControls = (): JSX.Element => (
     <LeftControlsContainer>
+        <img
+            src={bugsLogo}
+            alt='Bugs Computer Club'
+            style={{height: '32px'}}
+        />
         {isDesktopApp() && <HistoryButtons/>}
     </LeftControlsContainer>
 );

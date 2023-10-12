@@ -188,7 +188,7 @@ $sidebarOpacityAnimationDuration: 0.15s;
                 background: rgba(var(--sidebar-text-rgb), 0.04);
 
                 &:hover:not(.active) {
-                    background: rgba(var(--sidebar-text-rgb), 0.16);
+                    background: rgba(var(--sidebar-text-rgb), 0.08);
                     color: var(--sidebar-text);
                 }
             }
@@ -277,7 +277,7 @@ $sidebarOpacityAnimationDuration: 0.15s;
             }
 
             &:hover {
-                background: rgba(var(--sidebar-text-rgb), 0.16);
+                background: rgba(var(--sidebar-text-rgb), 0.08);
                 color: var(--sidebar-text);
 
                 .SidebarChannelNavigator_shortcutText {
@@ -294,7 +294,7 @@ $sidebarOpacityAnimationDuration: 0.15s;
 
         .SidebarChannelNavigator_divider {
             height: 28px;
-            border-right: 1px solid rgba(var(--sidebar-text-rgb), 0.16);
+            border-right: 1px solid rgba(var(--sidebar-text-rgb), 0.08);
             margin-right: 8px;
             margin-left: 8px;
         }
@@ -381,7 +381,7 @@ $sidebarOpacityAnimationDuration: 0.15s;
     .AddChannelDropdown_dropdownButton:hover,
     .AddChannelDropdown_dropdownButton:active,
     .AddChannelDropdown_dropdownButton:focus {
-        background-color: rgba(var(--sidebar-text-rgb), 0.16);
+        background-color: rgba(var(--sidebar-text-rgb), 0.08);
         color: var(--sidebar-text);
         cursor: pointer;
     }

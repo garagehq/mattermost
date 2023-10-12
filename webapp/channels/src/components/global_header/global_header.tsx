@@ -22,7 +22,7 @@ const GlobalHeaderContainer = styled.header`
     flex-shrink: 0;
     align-items: center;
     justify-content: space-between;
-    height: 40px;
+    height: 44px;
     background: var(--global-header-background);
     border-bottom: solid 1px rgba(var(--center-channel-color-rgb), 0.08);
     color: rgba(var(--global-header-text-rgb), 0.64);
